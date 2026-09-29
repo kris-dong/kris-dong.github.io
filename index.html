@@ -74,783 +74,603 @@
     "RISC-V"
   ]
 }
-</script><style>
-        /* --- Dark Mode Palette & General Changes --- */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            /* CHANGE 1: Main Dark Background */
-            background-color: #121212; 
-            color: #cccccc; /* Light text color */
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            /* CHANGE 1: Container background matches body */
-            background-color: #121212;
-        }
-        header {
-            /* Lighter dark background for header */
-            background-color: #1e1e1e;
-            /* Light text color */
-            color: #B0C4DE;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            /* Lighter dark background for nav */
-            background-color: #1e1e1e;
-            flex-wrap: wrap;
-        }
-        nav a {
-            /* Light text color for nav links */
-            color: #B0C4DE;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-        nav a:hover {
-            background-color: #333333; /* Darker hover effect */
-            color: #fff;
-        }
-        .buttons {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-        .buttons button {
-            /* Buttons should also be dark */
-            background-color: #1e1e1e; 
-            /* Lighter border color */
-            border: 2px solid #B0C4DE;
-            border-radius: 50%;
-            padding: 5px;
-            margin: 5px;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            overflow: hidden;
-        }
-        .buttons button img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .buttons button:hover {
-            /* Lighter hover background */
-            background-color: #B0C4DE;
-        }
-        section {
-            padding: 20px;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        /* CHANGE 2: Lighter Dark Background for Bounding Boxes/Entries */
-        .about-entry {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            padding: 20px;
-            /* Remove border and make background dark */
-            border: none;
-            background-color: #1e1e1e;
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-        .about-entry img {
-            max-width: 150px;
-            height: auto;
-            margin-left: 10px;
-            margin-right: 20px;
-        }
-        .about-entry .text {
-            flex: 1;
-        }
-        .entry {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            padding: 20px;
-            /* Remove border and make background dark */
-            border: none;
-            background-color: #1e1e1e;
-            flex-wrap: wrap;
-        }
-        .affiliate {
-            background-color: #1e1e1e;
-        }
-        .recent-news {
-            background-color: #1e1e1e;
-        }
-        .entry img, .entry iframe {
-            max-width: 150px;
-            height: auto;
-            margin-right: 20px;
-        }
-        .entry .text {
-            flex: 1;
-        }
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,600&display=swap">
+<style>
+    /* ---------- overall ---------- */
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        padding: 10px;
+        padding-top: 70px;
+        background-color: #dfe3ef;
+        color: #333;
+        font-family: "Tahoma", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.5;
+    }
+    a { color: #337ab7; text-decoration: none; }
+    a:hover { color: #23527c; text-decoration: underline; }
+    p { margin: 0 0 10px; }
 
-    /* --- MOBILE OPTIMIZATION + MATCHING BACKGROUND --- */
-        .text {
-        background-color: #1e1e1e; /* Same as .entry background */
-        padding: 15px;
+    /* ---------- navigation ---------- */
+    .navbar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 1000;
+        background-color: #bdc5de;
+        border-bottom: 1px solid #e8e8e8;
+    }
+    .navbar-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        min-height: 50px;
+    }
+    .navbar-brand {
+        font-family: "Raleway", "Tahoma", sans-serif;
+        font-size: 20px;
+        color: #444;
+    }
+    .navbar-brand:hover { text-decoration: none; color: #222; }
+    .nav-links { display: flex; flex-wrap: wrap; }
+    .nav-links a {
+        color: #444;
+        padding: 14px 14px;
+        font-size: 11pt;
+    }
+    .nav-links a:hover { text-decoration: none; font-weight: bold; }
+    .nav-links a.active { font-weight: bold; }
+
+    /* ---------- main container ---------- */
+    .my-container {
+        max-width: 900px;
+        margin: 30px auto;
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 20px 50px 30px;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .field h3 {
+        text-align: center;
+        font-size: 140%;
+        font-weight: bold;
+        margin: 30px 0 16px;
+    }
+
+    /* ---------- profile header ---------- */
+    #info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 30px;
+        margin: 10px 0 20px;
+    }
+    #img-container { flex: 0 0 40%; }
+    #img-container img { width: 100%; border-radius: 6px; display: block; }
+    #info-text { flex: 1 1 300px; }
+    #info-text h2 {
+        font-family: "Raleway", "Tahoma", sans-serif;
+        font-weight: 600;
+        font-size: 26px;
+        margin: 0 0 16px;
+    }
+    #info-text .indent { margin: -6px 0 10px 15px; }
+
+    .intro { text-align: justify; font-size: 104%; }
+
+    /* ---------- news ---------- */
+    #news-text {
+        max-height: 250px;
+        overflow-y: scroll;
+        background-color: #f0f0f0;
+        padding: 13px;
         border-radius: 10px;
-        box-sizing: border-box;
-        }
+    }
+    #news-text p { margin: 0 0 6px; }
+    #news-text::-webkit-scrollbar { -webkit-appearance: none; width: 7px; }
+    #news-text::-webkit-scrollbar-thumb { border-radius: 4px; background-color: rgba(0,0,0,.5); }
+    .badge {
+        display: inline-block;
+        min-width: 58px;
+        padding: 1px 7px;
+        margin-right: 6px;
+        border: 2px solid;
+        border-radius: 10px;
+        background-color: #fff;
+        color: #565656;
+        font-size: 85%;
+        font-weight: 500;
+        text-align: center;
+    }
+    .badge-paper { border-color: #fc8d62; }
+    .badge-award { border-color: #e78ac3; }
+    .badge-event { border-color: #a6d854; }
+    .badge-others { border-color: #66c2a5; }
 
-        /* Make all .text sections responsive and full-width on smaller screens */
-        @media (max-width: 768px) {
-        .entry .text,
-        .about-entry .text {
-            width: 100%;
-            padding: 15px;
-            margin-top: 10px;
-        }
+    /* ---------- publication / experience entries ---------- */
+    .entry {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 18px;
+    }
+    .entry .thumb {
+        flex: 0 0 120px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e5e5e5;
+        border-radius: 6px;
+        background-color: #fff;
+        padding: 4px;
+    }
+    .entry .thumb img, .entry .thumb iframe {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border: 0;
+    }
+    .entry .thumb.logo { flex-basis: 70px; height: 70px; }
+    .entry .text { flex: 1; }
+    .entry .title { font-weight: bold; font-size: 105%; }
+    .entry .authors { color: #444; }
+    .entry .venue { font-style: italic; }
+    .entry .award { color: #c0392b; font-weight: bold; }
+    .entry .meta { color: #777; }
+    .entry .links a { margin-right: 2px; }
+    .entry p { margin: 2px 0; }
+    .entry .desc { margin-top: 6px; text-align: justify; }
 
-        .entry img,
-        .about-entry img {
-            max-width: 80%;
-            height: auto;
-            margin: 0 auto 15px auto;
-            display: block;
-        }
+    ul.plain { line-height: 1.6; padding-left: 22px; }
+    ul.plain li { margin-bottom: 6px; }
 
+    footer {
+        max-width: 900px;
+        margin: 0 auto 20px;
+        text-align: center;
+        color: #777;
+        font-size: 90%;
+    }
 
-        .text h2 {
-            margin-top: 0;
-            font-size: 1.5em;
-            /* Lighter header color */
-            color: #B0C4DE;
-            text-align: center; /* improves readability on small screens */
-
-        }
-        .text h3, .text h4 {
-            margin: 0.5em 0;
-            text-align: center; /* improves readability on small screens */
-        }
-        .text p {
-            margin: 0.5em 0;
-            line-height: 1.3;
-            text-align: center; /* improves readability on small screens */
-        }
-        /* Ensure links are readable and colored appropriately for dark mode */
-        a {
-            color: #6495ED; 
-        }
-        /* Awards/Highlights (e.g., IISWC'25 in news and research section) */
-        .text h3[style*="C4820E"] {
-            color: #FFD700 !important; /* Lighter gold */
-        }
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            /* Lighter dark background */
-            background-color: #1e1e1e;
-            /* Darker border line */
-            border-top: 1px solid #333; 
-        }
-        @media (max-width: 768px) {
-            .about-entry, .entry {
-                flex-direction: column;
-                align-items: center;
-            }
-            nav a {
-                padding: 10px;
-            }
-        }
-        .recent-news::-webkit-scrollbar {
-        width: 8px;
-        }
-        .recent-news::-webkit-scrollbar-thumb {
-        background-color: #333; /* Darker scrollbar */
-        border-radius: 4px;
-        }
-        .recent-news::-webkit-scrollbar-thumb:hover {
-        background-color: #555;
-        }
-    
-
-        .section-title {
-            margin: 0.8em 0 0.6em 0;
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #B0C4DE;
-        }
-        .entry-title {
-            margin-top: 0;
-            margin-bottom: 0.4em;
-            font-size: 1.45em;
-            font-weight: bold;
-            color: #B0C4DE;
-        }
-
+    @media (max-width: 700px) {
+        .my-container { padding: 16px 18px 24px; }
+        #img-container { flex-basis: 100%; }
+        .entry { gap: 12px; }
+        .entry .thumb { flex-basis: 80px; height: 60px; }
+        .entry .thumb.logo { flex-basis: 50px; height: 50px; }
+        .nav-links a { padding: 10px 8px; }
+    }
 </style>
 <script>
-        function showTab(tabId) {
-            var tabs = document.getElementsByClassName('tab-content');
-            for (var i = 0; i < tabs.length; i++) {
-                tabs[i].classList.remove('active');
-            }
-            document.getElementById(tabId).classList.add('active');
-        }
-    </script>
+    function showTab(tabId) {
+        if (!document.getElementById(tabId)) tabId = 'about';
+        var tabs = document.getElementsByClassName('tab-content');
+        for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+        document.getElementById(tabId).classList.add('active');
+        var links = document.querySelectorAll('.nav-links a');
+        for (var j = 0; j < links.length; j++)
+            links[j].classList.toggle('active', links[j].getAttribute('href') === '#' + tabId);
+        window.scrollTo(0, 0);
+    }
+    window.addEventListener('hashchange', function () { showTab(location.hash.slice(1)); });
+    window.addEventListener('DOMContentLoaded', function () { showTab(location.hash.slice(1) || 'about'); });
+</script>
 </head>
-<body onload="showTab('about')">
-<div class="container">
-<header>
-<h1>Shengjun Kris Dong</h1>
-<p style="margin: 6px 0 0; color: #cccccc;">Ph.D. Researcher in Computer Architecture and AI Systems at UC Berkeley</p>
-</header>
-<nav>
-<a href="javascript:void(0)" onclick="showTab('about')">About Me</a>
-<a href="javascript:void(0)" onclick="showTab('research')">Research</a>
-<a href="javascript:void(0)" onclick="showTab('work')">Experience</a>
-<a href="javascript:void(0)" onclick="showTab('volunteer')">Services</a>
-</nav>
-<div class="buttons">
-<button onclick="window.location.href='mailto:krisdong@berkeley.edu'">
-<img alt="Email" src="Icons/Gmail.png"/>
-</button>
-<button onclick="window.location.href='Kris_Dong_CV.pdf'">
-<img alt="CV_1" src="Icons/cv.png"/>
-</button>
-<button onclick="window.location.href='https://scholar.google.com/citations?hl=en&amp;user=E6RC_iIAAAAJ'">
-<img alt="Scholar" src="Icons/GoogleScholar.png"/>
-</button>
-<button onclick="window.location.href='https://www.linkedin.com/in/chris-dong/'">
-<img alt="LinkedIn" src="Icons/LinkedIn.png"/>
-</button>
-<button onclick="window.location.href='https://github.com/kris-dong'">
-<img alt="GitHub" src="Icons/Github.png"/>
-</button>
+<body>
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="navbar-brand" href="#about">Shengjun Kris Dong</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#work">Experience</a>
+      <a href="#volunteer">Services</a>
+    </div>
+  </div>
 </div>
+
+<div class="my-container">
+
+<!-- ===================== ABOUT ===================== -->
 <section class="tab-content active" id="about">
-<div class="about-layout" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
-<div class="quote-box" style="flex: 1 1 30%; min-width: 250px; 
-        /* CHANGE 3: Darker grey background, no bounding box */
-        background-color: #0f0f0f; 
-        border-left: 4px solid #6495ED; /* Lightened accent color */
-        border-radius: 10px; 
-        padding: 20px; 
-        box-shadow: none;"> <blockquote style="font-style: italic; font-size: 1.05em; 
-            /* Light text color for quote */
-            color: #cccccc; 
-            margin: 0; line-height: 1.6;
-            text-align: center;">
-            A human being should be able to change a diaper, plan an invasion, butcher a hog, conn a ship, design a building,
-            write a sonnet, balance accounts, build a wall, set a bone, comfort the dying, take orders, give orders, cooperate,
-            act alone, solve equations, analyze a new problem, pitch manure, program a computer, cook a tasty meal, fight efficiently,
-            die gallantly. 
-            <span style="font-weight: bold;">Specialization is for insects.</span>
-<br/><br/>
-<span style="font-weight: bold;">Robert A. Heinlein, <em>《Time Enough for Love》</em></span>
-</blockquote>
-</div>
-<div class="about-details" style="flex: 1 1 65%; min-width: 320px;">
-<div class="about-entry">
-<img alt="ProfilePic" src="Icons/profile.JPG" style="max-width: 195px; height: auto; margin-right: 20px; border-radius: 10px;"/>
-<div class="text">
-<h2 class="entry-title">About Shengjun Kris Dong</h2>
 
-<p>
-I'm currently a Ph.D. student in Computer Architecture at the University of California, Berkeley (EECS),
-co-advised by 
-<a href="https://people.eecs.berkeley.edu/~ysshao/" style="color: #cccccc; font-weight: bold;">Prof. Sophia Yakun Shao</a>
-and 
-<a href="https://cwfletcher.github.io/" style="color: #cccccc; font-weight: bold;">Prof. Christopher W. Fletcher</a>.
-</p>
-<p>
-My research focuses on <span style="color: #C4820E; font-weight: bold;">systems for AI</span> and <span style="color: #C4820E; font-weight: bold;">AI for systems</span>, with an emphasis on <span style="color: #C4820E; font-weight: bold;">LLM-driven optimization</span> for efficient, high-performance execution from the kernel level to the full system stack. I develop <span style="color: #6495ED; font-weight: bold;">ICRL-based agentic flows</span> for automating code generation and performance-power optimization, and integrate these methods into compilers and runtime systems for heterogeneous and edge architectures.
-</p>
-<!-- <p>
-More broadly, I build infrastructure frameworks that support end-to-end accelerator design and evaluation, and apply LLM-driven optimization to achieve efficient, high-performance execution across GPUs, SoCs, and domain-specific accelerators. I am committed to open-source ecosystems and reproducible research; two of my projects received the Distinguished Artifact Award at ISCA 2023 and IISWC 2025. My goal is to release performant, production-grade agentic optimization flows with test harnesses, comprehensive verification, and full evaluation pipelines.
-</p> -->
-<!-- <p>
-            My research focuses on <span style="color: #C4820E; font-weight: bold;">systems for AI</span> and <span style="color: #C4820E; font-weight: bold;">AI for systems</span>. I aim to enable <span style="color: #C4820E; font-weight: bold;">agile hardware and software co-design</span>, facilitating rapid experimentation, cross-stack integration, and data-driven optimization across diverse compute platforms.
-          </p>
-<p>
-            My work spans three core directions:
-            <ul>
-<li>Develop infrastructures of <span style="color: #6495ED;  font-weight: bold;">design space exploration</span>, and <span style="color: #6495ED;  font-weight: bold;">pre-silicon evaluation</span> of <span style="color: #6495ED; font-weight: bold;">domain-specific accelerators</span>,</li>
-<li>Build <span style="color: #6495ED;  font-weight: bold;">unified compiler and runtime</span> for <span style="color: #6495ED; font-weight: bold;">heterogeneous architectures</span></li>
-<li>Innovate <span style="color: #6495ED;  font-weight: bold;">LLM-based agentic flows</span> that automate code generation and performance optimization.</li>enabling agile hardware–software co-design, rapid cross-stack experimentation, and data-driven optimization across diverse compute platforms
-</ul>
-</p> -->
-<p>
-More broadly, I build infrastructure frameworks that support <span style="color: #6495ED; font-weight: bold;">end-to-end hardware-software co-design</span>, enabling rapid experimentation and cross-stack integration, while providing full-stack performance characterization and closed-loop performance optimization and validation. I am passionate about open-source ecosystems and reproducible research. My efforts have been recognized with the <span style="color: #C4820E; font-weight: bold;">Distinguished Artifact Award at ISCA 2023</span> and the <span style="color: #C4820E; font-weight: bold;">Distinguished Artifact Award at IISWC 2025</span>.
-</p>
-</div>
-</div>
-</div>
-</div>
-<div class="entry recent-news" style="max-height: 400px; overflow-y: auto; padding-right: 10px; 
-    /* Handled by CSS class: border: none and background-color: #1e1e1e; */
-    border: none; background-color: #1e1e1e;
-    border-radius: 10px; margin-top: 30px;">
-<div class="text">
-<h2 class="section-title">Recent News</h2>
-<div class="news-list">
-<h3 style="color: #B0C4DE;">Feb 20, 2026</h3>
-<p>
-NVIDIA released its first open-source agentic framework for CUDA optimization: 
-<a href="KernelBlaster.pdf" style="color: #6495ED; font-weight: bold;">KernelBlaster</a>. It was a privilege to lead this effort and execute the vision with my amazing team!
-</p>
+  <div id="info">
+    <div id="img-container">
+      <img alt="Shengjun Kris Dong" src="Icons/profile.JPG"/>
+    </div>
+    <div id="info-text">
+      <h2>Shengjun Kris Dong</h2>
+      <p>Ph.D. Student, UC Berkeley EECS &middot; PhD Research Engineer @ <a href="https://www.nvidia.com/" target="_blank">NVIDIA</a></p>
+      <p class="indent">
+        Advised by <a href="https://people.eecs.berkeley.edu/~ysshao/" target="_blank">Prof. Sophia Yakun Shao</a>
+        and <a href="https://cwfletcher.github.io/" target="_blank">Prof. Christopher W. Fletcher</a>
+      </p>
+      <p>Email: <a href="mailto:krisdong@berkeley.edu">krisdong@berkeley.edu</a></p>
+      <p>
+        [<a href="Kris_Dong_CV.pdf" target="_blank">CV</a>]
+        [<a href="https://scholar.google.com/citations?hl=en&amp;user=E6RC_iIAAAAJ" target="_blank">Google Scholar</a>]
+        [<a href="https://www.linkedin.com/in/chris-dong/" target="_blank">LinkedIn</a>]
+        [<a href="https://github.com/kris-dong" target="_blank">GitHub</a>]
+      </p>
+    </div>
+  </div>
 
-<h3 style="color: #B0C4DE;">Oct 14, 2025</h3>
-<p>We won the Distinguished Artifact Award at 
-          <a href="https://www.linkedin.com/posts/chris-dong_iiswc-iiswc-robotics-activity-7385804075835125760-HtZQ" style="color: #6495ED; font-weight: bold;">IISWC'25!</a>
-</p>
-<h3 style="color: #B0C4DE;">Oct 12, 2025</h3>
-<p>Our work on 
-          <a href="IISWC_2025.pdf" style="color: #6495ED; font-weight: bold;">
-            Characterizing and Optimizing Real-Time Optimal Control for Embedded SoCs
-          </a> was presented at IEEE IISWC'25!</p>
-<h3 style="color: #B0C4DE;">Aug 13, 2025</h3>
-<p>My internship at Nvidia 
-          <a href="https://www.nvidia.com/en-us/research/" style="color: #6495ED; font-weight: bold;">
-            Architecture Research Group
-          </a> has been extended to Fall 2025!</p>
-<h3 style="color: #B0C4DE;">May 26, 2025</h3>
-<p>I'm excited to join 
-          <a href="https://www.nvidia.com/en-us/research/" style="color: #6495ED; font-weight: bold;">
-            Architecture Research Group
-          </a> at Nvidia as a PhD Research Intern!</p>
-<h3 style="color: #B0C4DE;">May 16, 2025</h3>
-<p>Our work on 
-          <a href="https://arxiv.org/abs/2408.07866" style="color: #6495ED; font-weight: bold;">
-            Certifiable Deep Learning for Reachability using a new Lipschitz Continuous Value Function
-          </a> was accepted by IEEE RA-L'25!</p>
-<h3 style="color: #B0C4DE;">Aug 19, 2024</h3>
-<p>Our work on 
-          <a href="https://arxiv.org/abs/2408.03408v1" style="color: #6495ED; font-weight: bold;">
-            LLM-Aided Compilation for Tensor Accelerators
-          </a> was accepted by IEEE LAD '24!</p>
-<h3 style="color: #B0C4DE;">Aug 1, 2024</h3>
-<p>I'm excited to pass my Ph.D. preliminary exam at UC Berkeley!</p>
-<h3 style="color: #B0C4DE;">Oct 29, 2023</h3>
-<p>We organized a half-day tutorial on 
-          <a href="https://ucb-bar.github.io/RoSE/tutorial" style="color: #6495ED; font-weight: bold;">RoSÉ</a> 
-          at IEEE MICRO!</p>
-<h3 style="color: #B0C4DE;">Aug 14, 2023</h3>
-<p>I was granted a EECS Departmental Ph.D. Fellowship by UC Berkeley!</p>
-<h3 style="color: #B0C4DE;">Jun 19, 2023</h3>
-<p>We won the ISCA Distinguished Artifact Award! 
-          <a href="https://bwrc.eecs.berkeley.edu/news/2023/7/6/25978/congratulations-dima-and-rose-team-winning-isca-distinguished-artifact-award" style="color: #6495ED; font-weight: bold;">(BWRC News)</a>
-</p>
-<h3 style="color: #B0C4DE;">Jun 19, 2023</h3>
-<p>Our work 
-          <a href="https://dl.acm.org/doi/abs/10.1145/3579371.3589099" style="color: #6495ED; font-weight: bold;">
-            RoSÉ: A Hardware-Software Co-Simulation Infrastructure Enabling Pre-Silicon Full-Stack Robotics SoC Evaluation
-          </a> was presented at IEEE ISCA</p>
-<h3 style="color: #B0C4DE;">Mar 24, 2023</h3>
-<p>I was featured on 
-          <a href="https://medium.com/the-coleman-fung-institute/chris-dong-meng-22-eecs-i-will-never-forget-the-slip-of-paper-that-i-used-to-forge-a-new-path-e35d17472df4" style="color: #6495ED; font-weight: bold;">UC Berkeley EECS Medium</a>!</p>
-<h3 style="color: #B0C4DE;">Mar 10, 2022</h3>
-<p>Our work was presented at 
-          <a href="https://microarch.org/micro56/index.php" style="color: #6495ED; font-weight: bold;">RoboARCH Workshop at IEEE MICRO</a>!</p>
-<h3 style="color: #B0C4DE;">Mar 10, 2022</h3>
-<p>Our work was presented at 
-          <a href="https://illixr.org/open_meetings" style="color: #6495ED; font-weight: bold;">ILLIXR Consortium</a>. 
-          <a href="https://www.youtube.com/watch?v=o7P6AOBeGcs&amp;t=100s" style="color: #6495ED; font-weight: bold;">(Recording)</a>
-</p>
-</div>
-</div>
-</div>
-<div class="entry affiliate" style="border: none; background-color: transparent; box-shadow: none;">
-<div class="text" style="background-color: #1e1e1e; border-radius: 10px; padding: 20px;">
-<h2 class="section-title">Affiliations</h2>
+  <div class="field intro">
+    <p>
+      I'm a Ph.D. student in Computer Architecture at the University of California, Berkeley (EECS),
+      co-advised by Prof. Sophia Yakun Shao and Prof. Christopher W. Fletcher.
+    </p>
+    <p>
+      My research focuses on <b>systems for AI</b> and <b>AI for systems</b>, with an emphasis on
+      <b>LLM-driven optimization</b> for efficient, high-performance execution from the kernel level to the full
+      system stack. I develop <b>ICRL-based agentic flows</b> for automating code generation and performance-power
+      optimization, and integrate these methods into compilers and runtime systems for heterogeneous and edge
+      architectures.
+    </p>
+    <p>
+      More broadly, I build infrastructure frameworks that support <b>end-to-end hardware-software co-design</b>,
+      enabling rapid experimentation and cross-stack integration, while providing full-stack performance
+      characterization and closed-loop performance optimization and validation. I am passionate about open-source
+      ecosystems and reproducible research. My efforts have been recognized with the
+      <b>Distinguished Artifact Award at ISCA 2023</b> and the <b>Distinguished Artifact Award at IISWC 2025</b>.
+    </p>
+  </div>
 
-<p>I'm affiliated with the following groups:</p>
-<ul style="list-style-type: disc; margin-left: 25px; padding-left: 10px;">
-<li><a href="https://slice.eecs.berkeley.edu/" style="color: #3B7EA1; font-weight: bold;">Specialized Computing Ecosystems (SLICE)</a></li>
-<li><a href="https://bar.eecs.berkeley.edu/" style="color: #3B7EA1; font-weight: bold;">Berkeley Architecture Research (BAR)</a></li>
-<li><a href="https://bwrc.eecs.berkeley.edu/" style="color: #3B7EA1; font-weight: bold;">Berkeley Wireless Research Center (BWRC)</a></li>
-<li><a href="https://spri.engr.illinois.edu/" style="color: #3B7EA1; font-weight: bold;">Security and Privacy Research at Illinois (SPRAI)</a></li>
-</ul>
-</div>
-</div>
+  <div class="field">
+    <h3>News</h3>
+    <div id="news-text">
+      <p><span class="badge badge-event">Event</span><b>Sep 2026</b>: We held a tutorial, <a href="https://github.com/ucb-bar/robotics-stack-tutorial">Building, Tracing, and Optimizing End-to-End ML and Robotic Workloads on Heterogeneous RISC-V SoCs with a Lightweight Zephyr Runtime</a>, at <a href="https://iiswc.org/iiswc2026/">IEEE IISWC'26</a> on Sep. 27, 2026 in Boulder, Colorado!</p>
+      <p><span class="badge badge-paper">Paper</span><b>Sep 2026</b>: <a href="Icons/XPU-RT.pdf">XPU-RT</a> was released publicly at our <a href="https://github.com/ucb-bar/robotics-stack-tutorial">IISWC'26 tutorial</a>!</p>
+      <p><span class="badge badge-paper">Paper</span><b>Feb 2026</b>: NVIDIA released its first open-source agentic framework for CUDA optimization: <a href="KernelBlaster.pdf">KernelBlaster</a>. It was a privilege to lead this effort and execute the vision with my amazing team!</p>
+      <p><span class="badge badge-award">Award</span><b>Oct 2025</b>: We won the Distinguished Artifact Award at <a href="https://www.linkedin.com/posts/chris-dong_iiswc-iiswc-robotics-activity-7385804075835125760-HtZQ">IISWC'25</a>!</p>
+      <p><span class="badge badge-paper">Paper</span><b>Oct 2025</b>: Our work on <a href="IISWC_2025.pdf">Characterizing and Optimizing Real-Time Optimal Control for Embedded SoCs</a> was presented at IEEE IISWC'25!</p>
+      <p><span class="badge badge-others">Others</span><b>Aug 2025</b>: My internship at the NVIDIA <a href="https://www.nvidia.com/en-us/research/">Architecture Research Group</a> has been extended to Fall 2025!</p>
+      <p><span class="badge badge-others">Others</span><b>May 2025</b>: I'm excited to join the <a href="https://www.nvidia.com/en-us/research/">Architecture Research Group</a> at NVIDIA as a PhD Research Intern!</p>
+      <p><span class="badge badge-paper">Paper</span><b>May 2025</b>: Our work on <a href="https://arxiv.org/abs/2408.07866">Certifiable Deep Learning for Reachability using a new Lipschitz Continuous Value Function</a> was accepted by IEEE RA-L'25!</p>
+      <p><span class="badge badge-paper">Paper</span><b>Aug 2024</b>: Our work on <a href="https://arxiv.org/abs/2408.03408v1">LLM-Aided Compilation for Tensor Accelerators</a> was accepted by IEEE LAD '24!</p>
+      <p><span class="badge badge-others">Others</span><b>Aug 2024</b>: I passed my Ph.D. preliminary exam at UC Berkeley!</p>
+      <p><span class="badge badge-event">Event</span><b>Oct 2023</b>: We organized a half-day tutorial on <a href="https://ucb-bar.github.io/RoSE/tutorial">RoSÉ</a> at IEEE MICRO!</p>
+      <p><span class="badge badge-award">Award</span><b>Aug 2023</b>: I was granted an EECS Departmental Ph.D. Fellowship by UC Berkeley!</p>
+      <p><span class="badge badge-award">Award</span><b>Jun 2023</b>: We won the ISCA Distinguished Artifact Award! <a href="https://bwrc.eecs.berkeley.edu/news/2023/7/6/25978/congratulations-dima-and-rose-team-winning-isca-distinguished-artifact-award">(BWRC News)</a></p>
+      <p><span class="badge badge-paper">Paper</span><b>Jun 2023</b>: Our work <a href="https://dl.acm.org/doi/abs/10.1145/3579371.3589099">RoSÉ: A Hardware-Software Co-Simulation Infrastructure Enabling Pre-Silicon Full-Stack Robotics SoC Evaluation</a> was presented at IEEE ISCA.</p>
+      <p><span class="badge badge-others">Others</span><b>Mar 2023</b>: I was featured on <a href="https://medium.com/the-coleman-fung-institute/chris-dong-meng-22-eecs-i-will-never-forget-the-slip-of-paper-that-i-used-to-forge-a-new-path-e35d17472df4">UC Berkeley EECS Medium</a>!</p>
+      <p><span class="badge badge-event">Event</span><b>Mar 2022</b>: Our work was presented at the <a href="https://microarch.org/micro56/index.php">RoboARCH Workshop at IEEE MICRO</a>!</p>
+      <p><span class="badge badge-event">Event</span><b>Mar 2022</b>: Our work was presented at the <a href="https://illixr.org/open_meetings">ILLIXR Consortium</a>. <a href="https://www.youtube.com/watch?v=o7P6AOBeGcs&amp;t=100s">(Recording)</a></p>
+    </div>
+  </div>
+
+  <div class="field">
+    <h3>Affiliations</h3>
+    <ul class="plain">
+      <li><a href="https://slice.eecs.berkeley.edu/" target="_blank">Specialized Computing Ecosystems (SLICE)</a></li>
+      <li><a href="https://bar.eecs.berkeley.edu/" target="_blank">Berkeley Architecture Research (BAR)</a></li>
+      <li><a href="https://bwrc.eecs.berkeley.edu/" target="_blank">Berkeley Wireless Research Center (BWRC)</a></li>
+      <li><a href="https://spri.engr.illinois.edu/" target="_blank">Security and Privacy Research at Illinois (SPRAI)</a></li>
+    </ul>
+  </div>
 </section>
-<style>
-@media (max-width: 768px) {
-  .about-layout {
-    flex-direction: column;
-  }
-  .quote-box {
-    order: -1; /* show quote above on small screens */
-  }
-  .about-entry {
-    flex-direction: column;
-    align-items: center;
-  }
-  .about-entry img {
-    margin: 0 auto 15px auto;
-  }
-}
-</style>
-<section class="tab-content" id="research">
-<h2 class="section-title">Journal and Conference Publications</h2>
-<div class="entry">
-<img alt="XPU-RT" src="Icons/XPU-RT.png"/>
-<div class="text">
-<h2 class="entry-title"><a href="Icons/XPU-RT.pdf" style="color: #6495ED;" target="_blank">XPU-RT: Feedback-Driven Realtime Deployment of Robotic Workloads on Heterogeneous SoCs</a></h2>
-<h4><i>Under Review</i></h4>
-<p><b><u>Shengjun Kris Dong</u></b>, Dima Nikiforov, Agustin N. Coppari Hollmann, Ailsa Sun, Yakun Sophia Shao</p>
-</div>
-</div>
-<div class="entry">
-    <img alt="kernel_blaster" src="Icons/nvidia.png"/>
+
+<!-- ===================== RESEARCH ===================== -->
+<section class="tab-content field" id="research">
+
+  <h3>Journal and Conference Publications</h3>
+
+  <div class="entry">
+    <div class="thumb"><img alt="XPU-RT" src="Icons/XPU-RT.png"/></div>
     <div class="text">
-        <h2 class="entry-title">
-            <a href="KernelBlaster.pdf" style="color: #6495ED;" target="_blank">
-                KernelBlaster: Continual Cross-Task CUDA Optimization via Memory-Augmented In-Context Reinforcement Learning
-            </a>
-        </h2>
-        <p>
-            <b><u>Kris Shengjun Dong</u></b>, Sahil Modi, Dima Nikiforov, Sana Damani, Edward Lin, Siva Kumar Sastry Hari, Christos Kozyrakis.
-        </p>
-        <p style="font-size: 1.2rem; color: #FFD700;">
-            <a href="https://arxiv.org/abs/2602.14293" style="color: #FFD700;" target="_blank">Paper</a>
-            &nbsp;|&nbsp;
-            <a href="https://github.com/NVlabs/KernelBlaster" style="color: #FFD700;">Repo Link</a>
-            &nbsp;|&nbsp;
-            <a href="KERNELBLASTER-KrisDong.pdf" style="color: #FFD700;">Slides</a>
-
-        </p>
+      <p class="title"><a href="Icons/XPU-RT.pdf" target="_blank">XPU-RT: Feedback-Driven Realtime Deployment of Robotic Workloads on Heterogeneous SoCs</a></p>
+      <p class="authors"><b><u>Shengjun Kris Dong</u></b>, Dima Nikiforov, Agustin N. Coppari Hollmann, Ailsa Sun, Yakun Sophia Shao</p>
+      <p class="venue">Under Review</p>
     </div>
-</div>
+  </div>
 
-<div class="entry">
-<img alt="IISWC 25" src="Icons/iiswc.png"/>
-<div class="text">
-<h2 class="entry-title">
-<a href="IISWC_2025.pdf" style="color: #6495ED;" target="_blank">
-                    Characterizing and Optimizing Real-Time Optimal Control for Embedded SoCs
-                </a>
-</h2>
-<h3 style="color: #FFD700;">IISWC Distinguished Artifact Award</h3>
-<h4>IISWC '25: The IEEE International Symposium on Workload Characterization</h4>
-<p><b><u>Kris Shengjun Dong</u></b>, Dima Nikiforov, Widyadewi Soedarmadji, Minh Nguyen, Vikram Jain, Christopher Fletcher, Yakun Sophia Shao. 
-            </p></div>
-</div>
-<div class="entry">
-<img alt="ISCA" src="Tutorials/ISCA_2023.png"/>
-<div class="text">
-<h2 class="entry-title"><a href="https://dl.acm.org/doi/abs/10.1145/3579371.3589099" style="color: #6495ED;">RoSÉ: A Hardware-Software Co-Simulation Infrastructure Enabling Pre-Silicon Full-Stack Robotics SoC Evaluation</a></h2>
-<h3 style="color: #FFD700;">ISCA Distinguished Artifact Award</h3>
-<h4>ISCA '23: 50th Annual International Symposium on Computer Architecture</h4>
-<p>Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Chengyi Lux Zhang, Seah Kim, Borivoje Nikolic, Yakun Sophia Shao</p>
-</div>
-</div>
-<div class="entry">
-<img alt="R-AL" src="RAS.png"/>
-<div class="text">
-<h2 class="entry-title"><a href="https://ieeexplore.ieee.org/document/10855593" style="color: #6495ED;">Certifiable Deep Learning for Reachability using a new Lipschitz Continuous Value Function</a></h2>
-<h4>IEEE Robotics and Automation Letters</h4>
-<p>Jingqi Li, Donggun Lee, Jaewon Lee, <b><u>Kris Shengjun Dong</u></b>, Somayeh Sojoudi, Claire Tomlin</p>
-</div>
-</div>
-<div class="entry">
-<img alt="LAD 24" src="Tutorials/LAD24.png"/>
-<div class="text">
-<h2 class="entry-title"><a href="https://ieeexplore.ieee.org/document/10691748" style="color: #6495ED;">LLM-Aided Compilation for Tensor Accelerators</a></h2>
-<h4>LAD '24: IEEE International Conference on LLM-Aided Design</h4>
-</div>
-</div>
-<div class="entry">
-<img alt="JSSC" src="Icons/ieee-sscs.png"/>
-<div class="text">
-<h2 class="entry-title"><a href="https://ieeexplore.ieee.org/abstract/document/11458049" style="color: #6495ED;">Cygnus: A Heterogeneous Octa-Core RISC-V Vector Processor for Digital Signal Processing Applications</a></h2>
-<h4>IEEE Journal of Solid-State Circuits, Volume 61, 2026</h4>
-</div>
-</div>
-<div class="entry">
-<img alt="VLSI" src="Icons/VSLI.png"/>
-<div class="text">
-<h2 class="entry-title">Sirius: A Dual-Chiplet System for Multimodal Embodied AI with Heterogeneous RVV Cores, Dense and Sparse Accelerators</h2>
-<h4>Symposium on VLSI Technology and Circuits, 2026</h4>
-</div>
-</div>
-<p> </p>
-<h2 class="section-title">Tutorials and Talks</h2>
-<div class="entry">
-<img alt="IISWC 26" src="Icons/iiswc.png"/>
- <div class="text">
-<h2 class="entry-title">Building, Tracing, and Optimizing End-to-End ML and Robotic Workloads on Heterogeneous RISC-V SoCs with a Lightweight Zephyr Runtime</h2>
-<h4>IISWC '26: IEEE International Symposium on Workload Characterization</h4>
-<p><i>Tutorial, IISWC, IEEE, Sep. 27-29, 2026, Boulder, Colorado.</i></p>
-<p>Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Agustin Coppari Hollmann, Loren Hung, Ailsa Sun, Yakun Sophia Shao</p>
-<p style="font-size: 1.2rem; color: #FFD700;">
-<a href="https://github.com/ucb-bar/robotics-stack-tutorial" style="color: #FFD700;" target="_blank">Repo Link</a>
-</p>
-</div>
-</div>
-<div class="entry">
-<img alt="MICRO 22" src="Tutorials/micro-red.png"/>
-<div class="text">
-<h2 class="entry-title"><a href="https://ucb-bar.github.io/RoSE/tutorial" style="color: #6495ED;">RoSÉ Tutorial</a></h2>
-<h4>MICRO '23:IEEE/ACM International Symposium on Microarchitecture</h4>
-<p><i>Oral Presentation, MICRO, IEEE, 2023.</i></p>
-<p>Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Borivoje Nikolic and Yakun Sophia Shao. 
-            </p></div>
-</div>
-<div class="entry">
-<iframe allowfullscreen="" frameborder="0" height="100" src="https://www.youtube.com/embed/o7P6AOBeGcs" width="150"></iframe>
-<div class="text">
-<h2 class="entry-title"><a href="https://www.youtube.com/embed/o7P6AOBeGcs" style="color: #6495ED;">A Co-Simulation Platform Enabling System-Level Pre-Silicon Evaluation of Robotics SoCs</a></h2>
-<h4>ILLIXR Consortium at University of Illinois at Urbana-Champaign</h4>
-<p><i> Oral Presentation, ILLIXR Consortium, University of Illinois at Urbana-Champaign, 2022.</i></p>
-<p>Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Borivoje Nikolic and Yakun Sophia Shao.</p>
-</div>
-</div>
-<p> </p>
-<h2 class="section-title">Workshop Publications</h2>
-<div class="entry">
-<img alt="ISCA 26" src="Tutorials/ISCA_2023.png"/>
-<div class="text">
-<h2 class="entry-title">Merlin: Agile Compiler Infrastructure for HW/SW Co-Design</h2>
-<h4>ISCA '26: International Symposium on Computer Architecture</h4>
-<p><i>OSCAR Workshop, ISCA, 2026.</i></p>
-<p>Agustin N. Coppari Hollmann, <b><u>Kris Shengjun Dong</u></b>, Dima Nikiforov, Ashvin Verma, Yakun Sophia Shao</p>
-</div>
-</div>
-<div class="entry">
-<img alt="GHC 26" src="Icons/ghc.png"/>
-<div class="text">
-<h2 class="entry-title">BAST: Adaptive Scheduling of Real-Time Robotic Workloads on Heterogeneous SoCs</h2>
-<h4>GHC '26: Grace Hopper Celebration 2026, Anaheim, California</h4>
-<p><i>Academic Poster Session, October 27-30, 2026.</i></p>
-<p>Ailsa Sun, <b><u>Kris Shengjun Dong</u></b>, Dima Nikiforov, et al.</p>
-</div>
-</div>
-<div class="entry">
-<img alt="MICRO 23" src="Tutorials/micro-red.png"/>
-<div class="text">
-<h2 class="entry-title">Design, Simulation, and Evaluation of Hardware for Full Stack Robotics Systems</h2>
-<h4>MICRO '23:IEEE/ACM International Symposium on Microarchitecture</h4>
-<p><i> 2nd RoboARCH Workshop, MICRO, IEEE, 2023.</i></p>
-<p>Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Borivoje Nikolic, Yakun Sophia Shao. 
-            </p></div>
-</div>
-<div class="entry">
-<img alt="MICRO 22" src="Tutorials/micro-red.png"/>
-<div class="text">
-<h2 class="entry-title">DryDock: A Co-Simulation Platform Enabling System-Level Pre-Silicon Evaluation of Robotics SoCs</h2>
-<h4>MICRO '22: IEEE/ACM International Symposium on Microarchitecture</h4>
-<p><i> 1st RoboARCH Workshop Presentation, MICRO, IEEE, 2022.</i></p>
-<p>Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Borivoje Nikolic and Yakun Sophia Shao</p>
-</div>
-</div>
-<p> </p>
-</section>
-
-<section class="tab-content" id="work">
-<h2 class="section-title">Working Experience</h2>
-<!-- <div class="entry">
-    <img alt="qualcomm" src="Icons/Qualcomm-emblem.png"/>
+  <div class="entry">
+    <div class="thumb"><img alt="KernelBlaster" src="Icons/nvidia.png"/></div>
     <div class="text">
-        <h2 class="entry-title">PhD Research Intern</h2>
-        <p style="margin-top: 0;"><i>Summer 2026</i></p>
-        <p>
-            I will be interning with Qualcomm's <a href="https://www.qualcomm.com/research/artificial-intelligence" 
-               style="color: #6495ED; font-weight: bold;" 
-               target="_blank"> AI Research Team (HetAI)</a>.  I will collaborate with Paul Whatmough, Prof. Mahdi Nazm Bojnordi, and Kristopher Urquhart on research related to heterogeneous AI systems.
-        </p>
+      <p class="title"><a href="KernelBlaster.pdf" target="_blank">KernelBlaster: Continual Cross-Task CUDA Optimization via Memory-Augmented In-Context Reinforcement Learning</a></p>
+      <p class="authors"><b><u>Kris Shengjun Dong</u></b>, Sahil Modi, Dima Nikiforov, Sana Damani, Edward Lin, Siva Kumar Sastry Hari, Christos Kozyrakis</p>
+      <p class="links">
+        [<a href="https://arxiv.org/abs/2602.14293" target="_blank">Paper</a>]
+        [<a href="https://github.com/NVlabs/KernelBlaster" target="_blank">Code</a>]
+        [<a href="KERNELBLASTER-KrisDong.pdf" target="_blank">Slides</a>]
+      </p>
     </div>
-</div> -->
-<div class="entry">
-<img alt="nv" src="Icons/nvidia.png"/>
-<div class="text">
-<h2 class="entry-title">PhD Research Engineer</h2>
-<p style="margin-top: 0;"><i>NVIDIA &nbsp;|&nbsp; Oct 2026 - Present &nbsp;|&nbsp; Santa Clara, CA</i></p>
-<p>At NVIDIA, I develop agentic LLM-based methods for generating and optimizing GPU code for <a href="https://developer.nvidia.com/cuopt-logistics-optimization" style="color: #6495ED; font-weight: bold;" target="_blank">NVIDIA cuOpt</a>, a GPU-accelerated library for large-scale linear, quadratic, mixed-integer, and vehicle-routing optimization. I build automated workflows in which LLM agents iteratively generate, evaluate, and refine performance-critical GPU kernels, improving efficiency and scalability for problems with large numbers of variables and constraints.</p>
-</div>
-</div>
-<div class="entry">
-<img alt="apple" src="Icons/apple.svg"/>
-<div class="text">
-<h2 class="entry-title">Siri Machine Learning Engineer</h2>
-<p style="margin-top: 0;"><i>Apple &nbsp;|&nbsp; May 2026 - Sep 2026 &nbsp;|&nbsp; Cupertino, CA</i></p>
-<p>At Apple, I developed a hardware-aware agentic AI framework for optimizing real-time multimodal VLM/VLA-style models, using an in-context reinforcement learning workflow that leverages runtime feedback to autonomously discover memory, scheduling, and compute optimizations.</p>
-</div>
-</div>
-<div class="entry">
-<img alt="nv" src="Icons/nvidia.png"/>
-<div class="text">
-<h2 class="entry-title">PhD Research Intern</h2>
-<p style="margin-top: 0;"><i>May 2025 - Nov 2025</i></p>
-<p> I worked as a PhD Research Intern, at Nvidia's Architecture Research Group. My internship project tunrs into the first open-source agentic framework for CUDA optimization of Nvidia <a href="KernelBlaster.pdf" style="color: #6495ED; font-weight: bold;">KernelBlaster</a>.  I have the pleasure of working with Christos Kozyrakis Siva Hari,and Sana Damani!</p>
-</div>
-</div>
-<div class="entry">
-<img alt="tesla" src="Icons/tesla.jpeg"/>
-<div class="text">
-<h2 class="entry-title">System Engineer</h2>
-<p style="margin-top: 0;"><i>Dec 2021 - Dec 2022</i></p>
-<p> At Tesla, I contributed to enabling vehicle remote control for long-distance tele-operation with confidential, unreleased features. Additionally, I optimized user flows for Tesla's human-machine interface by re-architecting the notification stack and enhancing the vehicle range analysis portal, improving efficiency and satisfaction for 3.6 million users.</p>
-</div>
-</div>
-<div class="entry">
-<img alt="amazon" src="Icons/amazon.jpeg"/>
-<div class="text">
-<h2 class="entry-title">Project Manager</h2>
-<p style="margin-top: 0;"><i>Sep 2020 - Sep 2021</i></p>
-<p>At Amazon, I initiated the "Alexa for Fulfillment Center" project, enabling Alexa to assist warehouse associates in completing tasks with appropriate instructions. Collaborating with Amazon’s Alexa (Speech) team, I defined project requirements to guide development and deployment efforts and conducted prototype evaluation using real-world data in diverse noisy warehouse environments.</p>
-</div>
-</div>
-<h2 class="section-title">Education</h2>
-<div class="entry">
-<img alt="University of California, Berkeley" src="Icons/Berkeley.png"/>
-<div class="text">
-<h2 class="entry-title">University of California, Berkeley</h2>
-<p class="degree">Ph.D. in Electrical Engineering and Computer Sciences</p>
-<p class="date">2022 - 2027</p>
-<p class="degree">Master in Electrical Engineering and Computer Sciences</p>
-<p class="date">2021 - 2022</p>
-</div>
-</div>
-<div class="entry">
-<img alt="University of Massachusetts Amherst" src="Icons/umass.jpg"/>
-<div class="text">
-<h2 class="entry-title">University of Massachusetts Amherst</h2>
-<p class="degree">Bachelor of Science in Computer Science</p>
-<p class="degree">Bachelor of Science in Mathematics</p>
-<p class="degree">Bachelor of Business Administration in Finance</p>
-<p class="date">2016 - 2020</p>
-</div>
-</div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="IISWC 25" src="Icons/iiswc.png"/></div>
+    <div class="text">
+      <p class="title"><a href="IISWC_2025.pdf" target="_blank">Characterizing and Optimizing Real-Time Optimal Control for Embedded SoCs</a></p>
+      <p class="authors"><b><u>Kris Shengjun Dong</u></b>, Dima Nikiforov, Widyadewi Soedarmadji, Minh Nguyen, Vikram Jain, Christopher Fletcher, Yakun Sophia Shao</p>
+      <p class="venue">IISWC '25: IEEE International Symposium on Workload Characterization</p>
+      <p class="award">IISWC Distinguished Artifact Award</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="ISCA 23" src="Tutorials/ISCA_2023.png"/></div>
+    <div class="text">
+      <p class="title"><a href="https://dl.acm.org/doi/abs/10.1145/3579371.3589099" target="_blank">RoSÉ: A Hardware-Software Co-Simulation Infrastructure Enabling Pre-Silicon Full-Stack Robotics SoC Evaluation</a></p>
+      <p class="authors">Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Chengyi Lux Zhang, Seah Kim, Borivoje Nikolic, Yakun Sophia Shao</p>
+      <p class="venue">ISCA '23: 50th Annual International Symposium on Computer Architecture</p>
+      <p class="award">ISCA Distinguished Artifact Award</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="RA-L" src="RAS.png"/></div>
+    <div class="text">
+      <p class="title"><a href="https://ieeexplore.ieee.org/document/10855593" target="_blank">Certifiable Deep Learning for Reachability using a new Lipschitz Continuous Value Function</a></p>
+      <p class="authors">Jingqi Li, Donggun Lee, Jaewon Lee, <b><u>Kris Shengjun Dong</u></b>, Somayeh Sojoudi, Claire Tomlin</p>
+      <p class="venue">IEEE Robotics and Automation Letters</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="LAD 24" src="Tutorials/LAD24.png"/></div>
+    <div class="text">
+      <p class="title"><a href="https://ieeexplore.ieee.org/document/10691748" target="_blank">LLM-Aided Compilation for Tensor Accelerators</a></p>
+      <p class="venue">LAD '24: IEEE International Conference on LLM-Aided Design</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="JSSC" src="Icons/ieee-sscs.png"/></div>
+    <div class="text">
+      <p class="title"><a href="https://ieeexplore.ieee.org/abstract/document/11458049" target="_blank">Cygnus: A Heterogeneous Octa-Core RISC-V Vector Processor for Digital Signal Processing Applications</a></p>
+      <p class="venue">IEEE Journal of Solid-State Circuits, Volume 61, 2026</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="VLSI" src="Icons/VSLI.png"/></div>
+    <div class="text">
+      <p class="title"><a href="https://ieeexplore.ieee.org/document/11577229/" target="_blank">Sirius: A Dual-Chiplet System for Multimodal Embodied AI with Heterogeneous RVV Cores, Dense and Sparse Accelerators</a></p>
+      <p class="venue">Symposium on VLSI Technology and Circuits, 2026</p>
+    </div>
+  </div>
+
+  <h3>Tutorials and Talks</h3>
+
+  <div class="entry">
+    <div class="thumb"><img alt="IISWC 26" src="Icons/iiswc.png"/></div>
+    <div class="text">
+      <p class="title">Building, Tracing, and Optimizing End-to-End ML and Robotic Workloads on Heterogeneous RISC-V SoCs with a Lightweight Zephyr Runtime</p>
+      <p class="authors">Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Agustin Coppari Hollmann, Loren Hung, Ailsa Sun, Yakun Sophia Shao</p>
+      <p class="venue">Tutorial at IISWC '26: IEEE International Symposium on Workload Characterization, Sep. 27&ndash;29, 2026, Boulder, Colorado</p>
+      <p class="links">[<a href="https://github.com/ucb-bar/robotics-stack-tutorial" target="_blank">Code</a>]</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="MICRO 23" src="Tutorials/micro-red.png"/></div>
+    <div class="text">
+      <p class="title"><a href="https://ucb-bar.github.io/RoSE/tutorial" target="_blank">RoSÉ Tutorial</a></p>
+      <p class="authors">Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Borivoje Nikolic, Yakun Sophia Shao</p>
+      <p class="venue">Oral Presentation, MICRO '23: IEEE/ACM International Symposium on Microarchitecture</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><iframe allowfullscreen="" src="https://www.youtube.com/embed/o7P6AOBeGcs" title="ILLIXR talk"></iframe></div>
+    <div class="text">
+      <p class="title"><a href="https://www.youtube.com/embed/o7P6AOBeGcs" target="_blank">A Co-Simulation Platform Enabling System-Level Pre-Silicon Evaluation of Robotics SoCs</a></p>
+      <p class="authors">Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Borivoje Nikolic, Yakun Sophia Shao</p>
+      <p class="venue">Oral Presentation, ILLIXR Consortium, University of Illinois at Urbana-Champaign, 2022</p>
+    </div>
+  </div>
+
+  <h3>Workshop Publications</h3>
+
+  <div class="entry">
+    <div class="thumb"><img alt="ISCA 26" src="Tutorials/ISCA_2023.png"/></div>
+    <div class="text">
+      <p class="title">Merlin: Agile Compiler Infrastructure for HW/SW Co-Design</p>
+      <p class="authors">Agustin N. Coppari Hollmann, <b><u>Kris Shengjun Dong</u></b>, Dima Nikiforov, Ashvin Verma, Yakun Sophia Shao</p>
+      <p class="venue">OSCAR Workshop at ISCA '26: International Symposium on Computer Architecture</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="GHC 26" src="Icons/ghc.png"/></div>
+    <div class="text">
+      <p class="title">BAST: Adaptive Scheduling of Real-Time Robotic Workloads on Heterogeneous SoCs</p>
+      <p class="authors">Ailsa Sun, <b><u>Kris Shengjun Dong</u></b>, Dima Nikiforov, et al.</p>
+      <p class="venue">Academic Poster Session, GHC '26: Grace Hopper Celebration 2026, Anaheim, California, Oct. 27&ndash;30, 2026</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="MICRO 23" src="Tutorials/micro-red.png"/></div>
+    <div class="text">
+      <p class="title">Design, Simulation, and Evaluation of Hardware for Full Stack Robotics Systems</p>
+      <p class="authors">Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Borivoje Nikolic, Yakun Sophia Shao</p>
+      <p class="venue">2nd RoboARCH Workshop at MICRO '23: IEEE/ACM International Symposium on Microarchitecture</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb"><img alt="MICRO 22" src="Tutorials/micro-red.png"/></div>
+    <div class="text">
+      <p class="title">DryDock: A Co-Simulation Platform Enabling System-Level Pre-Silicon Evaluation of Robotics SoCs</p>
+      <p class="authors">Dima Nikiforov, <b><u>Kris Shengjun Dong</u></b>, Borivoje Nikolic, Yakun Sophia Shao</p>
+      <p class="venue">1st RoboARCH Workshop at MICRO '22: IEEE/ACM International Symposium on Microarchitecture</p>
+    </div>
+  </div>
 </section>
 
-<section class="tab-content" id="volunteer">
+<!-- ===================== EXPERIENCE ===================== -->
+<section class="tab-content field" id="work">
 
-    <h2 class="section-title">Teaching</h2>
-
-    <div class="entry">
-        <img src="Volunteer/FHL.png" alt="FHL">
-        <div class="text">
-            <h2 class="entry-title">Lecturer</h2>
-            <p style="margin-top: 0;"><i>May 2023 - Sep 2023</i></p>
-            <p>
-                I led a new lecture series “Introduction to Embedded Systems and Edge ML”
-                at UC Berkeley’s Summer Campaign,
-                <a href="https://roar.berkeley.edu/roar-academy/" style="color: #6495ED;">
-                    Robot Open Autonomous Racing (ROAR) Academy
-                </a>.
-                Job duties included designing the curriculum, organizing the program and lab
-                sections, and introducing high school students to machine learning,
-                robotic prototyping, and embedded systems programming on edge devices.
-            </p>
-            <p style="font-style: italic;">
-                <a href="https://www.instagram.com/p/C3QWruSJMwa/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-                   style="color: #6495ED;">
-                    Related post
-                </a>
-            </p>
-        </div>
+  <h3>Work Experience</h3>
+  <!-- <div class="entry">
+    <div class="thumb logo"><img alt="qualcomm" src="Icons/Qualcomm-emblem.png"/></div>
+    <div class="text">
+      <p class="title">PhD Research Intern</p>
+      <p class="meta">Qualcomm &middot; Summer 2026</p>
+      <p class="desc">I will be interning with Qualcomm's <a href="https://www.qualcomm.com/research/artificial-intelligence" target="_blank">AI Research Team (HetAI)</a>. I will collaborate with Paul Whatmough, Prof. Mahdi Nazm Bojnordi, and Kristopher Urquhart on research related to heterogeneous AI systems.</p>
     </div>
+  </div> -->
 
-    <div class="entry">
-        <img src="Icons/Berkeley.png" alt="UC Berkeley">
-        <div class="text">
-            <h2 class="entry-title">Graduate Student Instructor</h2>
-            <p style="margin-top: 0;"><i>Spring 2026</i></p>
-            <p>
-                I led a discussion section and graduate student reading group for
-                <b>CS 152/252A: Computer Architecture and Engineering</b> at UC Berkeley,
-                facilitating technical discussions on processor microarchitecture,
-                instruction set design, and system-level performance analysis.
-            </p>
-            <p>
-                <a href="https://inst.eecs.berkeley.edu/~cs152/sp26/staff/"
-                   style="color: #6495ED; font-weight: bold;"
-                   target="_blank">
-                    Class website
-                </a>
-            </p>
-        </div>
+  <div class="entry">
+    <div class="thumb logo"><img alt="NVIDIA" src="Icons/nvidia.png"/></div>
+    <div class="text">
+      <p class="title">PhD Research Engineer</p>
+      <p class="meta">NVIDIA &middot; Oct 2026 &ndash; Present &middot; Santa Clara, CA</p>
+      <p class="desc">At NVIDIA, I develop agentic LLM-based methods for generating and optimizing GPU code for <a href="https://developer.nvidia.com/cuopt-logistics-optimization" target="_blank">NVIDIA cuOpt</a>, a GPU-accelerated library for large-scale linear, quadratic, mixed-integer, and vehicle-routing optimization. I build automated workflows in which LLM agents iteratively generate, evaluate, and refine performance-critical GPU kernels, improving efficiency and scalability for problems with large numbers of variables and constraints.</p>
     </div>
+  </div>
 
+  <div class="entry">
+    <div class="thumb logo" style="background-color: #222;"><img alt="Apple" src="Icons/apple.svg"/></div>
+    <div class="text">
+      <p class="title">Siri Machine Learning Engineer</p>
+      <p class="meta">Apple &middot; May 2026 &ndash; Sep 2026 &middot; Cupertino, CA</p>
+      <p class="desc">At Apple, I developed a hardware-aware agentic AI framework for optimizing real-time multimodal VLM/VLA-style models, using an in-context reinforcement learning workflow that leverages runtime feedback to autonomously discover memory, scheduling, and compute optimizations.</p>
+    </div>
+  </div>
 
-    <h2 class="section-title">Advising</h2>
-<div class="entry">
-<img alt="Mentor" src="Volunteer/Mentoring.png"/>
-<div class="text">
-<h2 class="entry-title">Mentoring</h2>
-<p><a style="color: #6495ED; font-weight: bold;">Ailsa Sun</a> (Winter 2025 – Present): Undergraduate at UC Berkeley</p>
-<p><a style="color: #6495ED; font-weight: bold;">Sam Bai</a> (Spring 2026 – Present): Undergraduate at UC Berkeley</p>
-<p><a style="color: #6495ED; font-weight: bold;">Rajeev Sreechandra Duggirala</a> (Fall 2026 – Present): Undergraduate at UC Berkeley</p>
-<p><a href="https://www.minh02.com" style="color: #6495ED; font-weight: bold;">Minh Nguyen</a> (Fall 2023 – Present): Undergraduate at UC Berkeley → MS in EECS at UC Berkeley</p>
-<p><a style="color: #6495ED; font-weight: bold;">Widyadewi Soedarmadji</a> (Winter 2023 – Present): Undergraduate at UC Berkeley → PhD in CS at Tsinghua University</p>
-<p><a style="color: #6495ED; font-weight: bold;">Chun Deng</a> (Jan 2023 – Winter 2023): Undergraduate at UC Berkeley → PhD at Stanford University</p>
-</div>
-</div>
-<div class="entry">
-<img alt="Resources" src="Volunteer/Advising.png"/>
-<div class="text">
-<h2 class="entry-title">Resources</h2>
-<p><i>Resources that helped me in my research journey, along with recent blog posts I’ve written or been featured in:</i></p>
-<p>
-<a href="https://www.eecs.harvard.edu/htk/phdadvice/" style="color: #6495ED; font-weight: bold;">Advice from H.T. Kung Ph.D.</a>
-</p>
-<p>
-<a href="Volunteer/tips.html" style="color: #6495ED; font-weight: bold;">Advice for Incoming EECS Freshmen:</a> Tips for EECS undergrad students on majors selection, and early career choices.
-                </p>
-<p>
-<a href="https://medium.com/berkeley-fung-institute/chris-dong-meng-22-eecs-i-will-never-forget-the-slip-of-paper-that-i-used-to-forge-a-new-path-e35d17472df4" style="color: #6495ED; font-weight: bold;">Interview featured by UC Berkeley EECS:</a> A personal story about how I found my direction in research. 
-                </p>
-</div>
-</div>
-<h2 class="section-title">Volunteering</h2>
-<div class="entry">
-<img alt="WOI" src="Volunteer/woi2.jpg"/>
-<div class="text">
-<h2 class="entry-title">Tech Lead</h2>
-<h4><a href="https://womenofisenberg.com/" style="color: #6495ED;">Women of Isenberg Conference</a></h4>
-<p>I led a team of nine students and four advisors for the 8th- 9th Annual Women of Isenberg Conference, including virtual seminars and workshops, successfully raising $70,000 and maintaining brand identity through various promotional activities. </p>
-<p style="font-style: italic;"><a href="https://medium.com/the-coleman-fung-institute/chris-dong-meng-22-eecs-i-will-never-forget-the-slip-of-paper-that-i-used-to-forge-a-new-path-e35d17472df4" style="color: #6495ED;">Related post</a></p>
-</div>
-</div>
-<div class="entry">
-<img alt="Tesla_Career" src="Icons/tesla.jpeg"/>
-<div class="text">
-<h2 class="entry-title">Organizer</h2>
-<h4><a href="https://www.tesla.com/event/uc-berkeley--eecs-career-fair" style="color: #6495ED;">Tesla Career Day</a></h4>
-<p>I coordinated career fairs and networking events to promote company culture and career opportunities, mentored students, and engaged with local colleges and community organizations to build candidate pipelines. </p>
-</div>
-</div>
-<div class="entry">
-<img alt="Hacker413" src="Volunteer/Hacker413.png"/>
-<div class="text">
-<h2 class="entry-title">Director</h2>
-<h4><a href="https://www.hackher413.com/" style="color: #6495ED;">Hack(H)er413</a></h4>
-<p>I directed a team to organize hackathons with diverse workshops and panels, supporting a community of over 1300 women and non-binary individuals in technology.</p>
-</div>
-</div>
-<div class="entry">
-<img alt="ARPS" src="Volunteer/ARPS.png"/>
-<div class="text">
-<h2 class="entry-title">Organizer</h2>
-<h4>VELA Program of Amherst Regional Middle School</h4>
-<p>At the VELA Program of Amherst Regional Middle School, I organized afterschool clubs, assisted with curriculum implementation and homework support, monitored student progress, and participated in weekly reflection sessions and program evaluation.</p>
-</div>
-</div>
+  <div class="entry">
+    <div class="thumb logo"><img alt="NVIDIA" src="Icons/nvidia.png"/></div>
+    <div class="text">
+      <p class="title">PhD Research Intern</p>
+      <p class="meta">NVIDIA &middot; May 2025 &ndash; Nov 2025</p>
+      <p class="desc">I worked as a PhD Research Intern in NVIDIA's Architecture Research Group. My internship project turned into NVIDIA's first open-source agentic framework for CUDA optimization, <a href="KernelBlaster.pdf">KernelBlaster</a>. I had the pleasure of working with Christos Kozyrakis, Siva Hari, and Sana Damani!</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="Tesla" src="Icons/tesla.jpeg"/></div>
+    <div class="text">
+      <p class="title">System Engineer</p>
+      <p class="meta">Tesla &middot; Dec 2021 &ndash; Dec 2022</p>
+      <p class="desc">At Tesla, I contributed to enabling vehicle remote control for long-distance tele-operation with confidential, unreleased features. Additionally, I optimized user flows for Tesla's human-machine interface by re-architecting the notification stack and enhancing the vehicle range analysis portal, improving efficiency and satisfaction for 3.6 million users.</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="Amazon" src="Icons/amazon.jpeg"/></div>
+    <div class="text">
+      <p class="title">Project Manager</p>
+      <p class="meta">Amazon &middot; Sep 2020 &ndash; Sep 2021</p>
+      <p class="desc">At Amazon, I initiated the "Alexa for Fulfillment Center" project, enabling Alexa to assist warehouse associates in completing tasks with appropriate instructions. Collaborating with Amazon’s Alexa (Speech) team, I defined project requirements to guide development and deployment efforts and conducted prototype evaluation using real-world data in diverse noisy warehouse environments.</p>
+    </div>
+  </div>
+
+  <h3>Education</h3>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="UC Berkeley" src="Icons/Berkeley.png"/></div>
+    <div class="text">
+      <p class="title">University of California, Berkeley</p>
+      <p>Ph.D. in Electrical Engineering and Computer Sciences <span class="meta">&middot; 2022 &ndash; 2027</span></p>
+      <p>Master in Electrical Engineering and Computer Sciences <span class="meta">&middot; 2021 &ndash; 2022</span></p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="UMass Amherst" src="Icons/umass.jpg"/></div>
+    <div class="text">
+      <p class="title">University of Massachusetts Amherst</p>
+      <p>B.S. in Computer Science, B.S. in Mathematics, B.B.A. in Finance <span class="meta">&middot; 2016 &ndash; 2020</span></p>
+    </div>
+  </div>
 </section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="tab-content field" id="volunteer">
+
+  <h3>Teaching</h3>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="UC Berkeley" src="Icons/Berkeley.png"/></div>
+    <div class="text">
+      <p class="title">Graduate Student Instructor</p>
+      <p class="meta">UC Berkeley &middot; Spring 2026</p>
+      <p class="desc">I led a discussion section and graduate student reading group for <b>CS 152/252A: Computer Architecture and Engineering</b> at UC Berkeley, facilitating technical discussions on processor microarchitecture, instruction set design, and system-level performance analysis. [<a href="https://inst.eecs.berkeley.edu/~cs152/sp26/staff/" target="_blank">Class website</a>]</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="ROAR Academy" src="Volunteer/FHL.png"/></div>
+    <div class="text">
+      <p class="title">Lecturer</p>
+      <p class="meta"><a href="https://roar.berkeley.edu/roar-academy/" target="_blank">Robot Open Autonomous Racing (ROAR) Academy</a> &middot; May 2023 &ndash; Sep 2023</p>
+      <p class="desc">I led a new lecture series “Introduction to Embedded Systems and Edge ML” at UC Berkeley’s summer program. Job duties included designing the curriculum, organizing the program and lab sections, and introducing high school students to machine learning, robotic prototyping, and embedded systems programming on edge devices. [<a href="https://www.instagram.com/p/C3QWruSJMwa/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA==" target="_blank">Related post</a>]</p>
+    </div>
+  </div>
+
+  <h3>Mentoring</h3>
+  <ul class="plain">
+    <li><a href="https://www.minh02.com" target="_blank"><b>Minh Nguyen</b></a> (Fall 2023 – Present): Undergraduate at UC Berkeley → MS in EECS at UC Berkeley</li>
+    <li><b>Chun Deng</b> (Jan 2023 – Winter 2023): Undergraduate at UC Berkeley → PhD at Stanford University</li>
+    <li><b>Widyadewi Soedarmadji</b> (Winter 2023 – Present): Undergraduate at UC Berkeley → PhD in CS at Tsinghua University</li>
+    <li><b>Ailsa Sun</b> (Winter 2025 – Present): Undergraduate at UC Berkeley</li>
+    <li><b>Sam Bai</b> (Spring 2026 – Present): Undergraduate at UC Berkeley</li>
+    <li><b>Rajeev Sreechandra Duggirala</b> (Fall 2026 – Present): Undergraduate at UC Berkeley</li>
+  </ul>
+
+  <h3>Resources</h3>
+  <p><i>Resources that helped me in my research journey, along with blog posts I’ve written or been featured in:</i></p>
+  <ul class="plain">
+    <li><a href="https://www.eecs.harvard.edu/htk/phdadvice/" target="_blank">Advice from H.T. Kung on the Ph.D.</a></li>
+    <li><a href="Volunteer/tips.html">Advice for Incoming EECS Freshmen</a>: tips for EECS undergrad students on major selection and early career choices.</li>
+    <li><a href="https://medium.com/berkeley-fung-institute/chris-dong-meng-22-eecs-i-will-never-forget-the-slip-of-paper-that-i-used-to-forge-a-new-path-e35d17472df4" target="_blank">Interview featured by UC Berkeley EECS</a>: a personal story about how I found my direction in research.</li>
+  </ul>
+
+  <h3>Volunteering</h3>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="Women of Isenberg" src="Volunteer/woi2.jpg"/></div>
+    <div class="text">
+      <p class="title">Tech Lead</p>
+      <p class="meta"><a href="https://womenofisenberg.com/" target="_blank">Women of Isenberg Conference</a></p>
+      <p class="desc">I led a team of nine students and four advisors for the 8th&ndash;9th Annual Women of Isenberg Conference, including virtual seminars and workshops, successfully raising $70,000 and maintaining brand identity through various promotional activities. [<a href="https://medium.com/the-coleman-fung-institute/chris-dong-meng-22-eecs-i-will-never-forget-the-slip-of-paper-that-i-used-to-forge-a-new-path-e35d17472df4" target="_blank">Related post</a>]</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="Tesla" src="Icons/tesla.jpeg"/></div>
+    <div class="text">
+      <p class="title">Organizer</p>
+      <p class="meta"><a href="https://www.tesla.com/event/uc-berkeley--eecs-career-fair" target="_blank">Tesla Career Day</a></p>
+      <p class="desc">I coordinated career fairs and networking events to promote company culture and career opportunities, mentored students, and engaged with local colleges and community organizations to build candidate pipelines.</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="Hack(H)er413" src="Volunteer/Hacker413.png"/></div>
+    <div class="text">
+      <p class="title">Director</p>
+      <p class="meta"><a href="https://www.hackher413.com/" target="_blank">Hack(H)er413</a></p>
+      <p class="desc">I directed a team to organize hackathons with diverse workshops and panels, supporting a community of over 1300 women and non-binary individuals in technology.</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="thumb logo"><img alt="ARPS" src="Volunteer/ARPS.png"/></div>
+    <div class="text">
+      <p class="title">Organizer</p>
+      <p class="meta">VELA Program of Amherst Regional Middle School</p>
+      <p class="desc">At the VELA Program of Amherst Regional Middle School, I organized afterschool clubs, assisted with curriculum implementation and homework support, monitored student progress, and participated in weekly reflection sessions and program evaluation.</p>
+    </div>
+  </div>
+</section>
+
 </div>
-</body>
+
 <footer>
-© 2024 Shengjun Kris Dong. 
-Hosted by Github Page <a href="https://github.com/kris-dong/personal-website-page" style="color: #6495ED;">(Template)</a>
+  &copy; 2026 Shengjun Kris Dong &middot; <a href="https://github.com/kris-dong/personal-website-page">Source</a>
 </footer>
+
+</body>
 </html>
